@@ -2,11 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';                
 import bodyParser from 'body-parser';
-import { MONGOURI } from '../config/keys';
 //components
 import Connection from './database/db.js';
 import Router from './routes/route.js';
-import { MONGOURI } from '../config/prod.js';
 
 
 dotenv.config();
@@ -21,7 +19,7 @@ app.use('/', Router);
 
 const PORT = 8000;
 
-Connection(MONGOURI);
+Connection(process.env.MONGOURI);
 
 if(process.env.NODE_ENV=='production'){
     const path = require('path')
